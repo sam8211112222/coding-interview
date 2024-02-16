@@ -1,6 +1,9 @@
 package LinkedList
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type SinglyNode[T any] struct {
 	Value T
@@ -40,8 +43,8 @@ func (sll *SinglyLinkedList[T]) Prepend(value T) {
 func (sll SinglyLinkedList[T]) FindByIndex(index int) (*SinglyNode[T], error) {
 	currentIndex := 0
 	current := sll.Head
-	err := fmt.Errorf("index: %v out of range: %v", index, sll.Length)
-	if index >= sll.Length {
+	err := fmt.Errorf("index: %v out of range", index)
+	if index < 0 || index >= sll.Length {
 		return nil, err
 	}
 	for current != nil {
@@ -52,4 +55,68 @@ func (sll SinglyLinkedList[T]) FindByIndex(index int) (*SinglyNode[T], error) {
 		current = current.Next
 	}
 	return nil, err
+}
+
+func (sll *SinglyLinkedList[T]) InsertAtIndex(index int, value T) error {
+	newNode := &SinglyNode[T]{Value: value}
+	err := fmt.Errorf("index: %v out of range", index)
+	if index < 0 || index >= sll.Length {
+		return err
+	}
+	if index == 0 {
+		prevNode := sll.Head
+		sll.Head = newNode
+		newNode.Next = prevNode
+		return nil
+	}
+
+	nodeByIndex, err := sll.FindByIndex(index - 1)
+	if err != nil {
+		return err
+	}
+	next := nodeByIndex.Next
+	nodeByIndex.Next = newNode
+	newNode.Next = next
+	sll.Length++
+	return nil
+}
+
+func (sll *SinglyLinkedList[T]) DeleteAtIndex(index int) error {
+
+	if index < 0 || index >= sll.Length {
+		err := fmt.Errorf("index: %v out of range", index)
+		return err
+	}
+	if index == 0 {
+		next := sll.Head.Next
+		sll.Head = next
+		return nil
+
+	}
+
+	nodeByIndex, err := sll.FindByIndex(index - 1)
+	if err != nil {
+		return err
+	}
+	prev := nodeByIndex
+	next := nodeByIndex.Next.Next
+	prev.Next = next
+	sll.Length--
+	return nil
+}
+
+func (sll *SinglyLinkedList[T]) Print() {
+	var sb strings.Builder
+	sb.WriteString("[")
+
+	current := sll.Head
+	for current != nil {
+		sb.WriteString(fmt.Sprintf("%v", current.Value))
+		if current.Next != nil {
+			sb.WriteString(", ")
+		}
+		current = current.Next
+	}
+	sb.WriteString("]")
+	fmt.Println(sb.String())
 }
