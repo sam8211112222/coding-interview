@@ -52,6 +52,8 @@ func DllReverse() {
 	dll.Append(1)
 	dll.Append(2)
 	dll.Append(3)
+	dll.Append(4)
+	dll.Append(5)
 
 	dll.PrintList()
 	dll.Reverse()
