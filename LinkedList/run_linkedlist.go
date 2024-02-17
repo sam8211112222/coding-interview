@@ -29,4 +29,9 @@ func DllRun() {
 	dll.PrintList()
 	dll.Prepend(0)
 	dll.PrintList()
+	dll.DeleteAtIndex(2)
+	dll.DeleteAtIndex(1)
+	dll.PrintList()
+	dll.InsertAtIndex(0, 12345)
+	dll.PrintList()
 }

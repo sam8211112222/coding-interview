@@ -66,7 +66,6 @@ func (dll *DoublyLinkedList[T]) Prepend(value T) {
 func (dll *DoublyLinkedList[T]) FindByIndex(index int) (*DoublyLinkedListNode[T], error) {
 	err := fmt.Errorf("index: %v out of range", index)
 	if index < 0 || index > dll.Length-1 {
-
 		return nil, err
 	}
 	var currentIndex int
@@ -92,6 +91,65 @@ func (dll *DoublyLinkedList[T]) FindByIndex(index int) (*DoublyLinkedListNode[T]
 		}
 	}
 	return nil, err
+}
+
+func (dll *DoublyLinkedList[T]) DeleteAtIndex(index int) error {
+	nodeByIndex, err := dll.FindByIndex(index)
+	if err != nil {
+		return err
+	}
+
+	if index == 0 {
+		dll.Head = nodeByIndex.Next
+		if dll.Head != nil {
+			dll.Head.Prev = nil
+		} else {
+			dll.Tail = nil
+		}
+	} else if index == dll.Length-1 {
+		dll.Tail = nodeByIndex.Prev
+		if dll.Tail != nil {
+			dll.Tail.Next = nil
+		} else {
+			dll.Head = nil
+		}
+	} else {
+		prev := nodeByIndex.Prev
+		next := nodeByIndex.Next
+		prev.Next = next
+		next.Prev = prev
+	}
+	dll.Length--
+	return nil
+}
+
+// InsertAtIndex 容許的index範圍只從0~length-1
+func (dll *DoublyLinkedList[T]) InsertAtIndex(index int, value T) error {
+	nodeByIndex, err := dll.FindByIndex(index)
+	if err != nil {
+		return err
+	}
+	newNode := &DoublyLinkedListNode[T]{Value: value}
+
+	if index == 0 {
+		nextNode := dll.Head
+		dll.Head = newNode
+		newNode.Next = nextNode
+		if nextNode != nil {
+			nextNode.Prev = newNode
+		} else {
+			dll.Tail = newNode
+		}
+	} else {
+		prev := nodeByIndex.Prev
+		next := nodeByIndex
+		prev.Next = newNode
+		newNode.Prev = prev
+		next.Prev = newNode
+		newNode.Next = next
+	}
+	dll.Length++
+	return nil
 }
 
 func (dll *DoublyLinkedList[T]) PrintList() {
