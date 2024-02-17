@@ -87,11 +87,11 @@ func (sll *SinglyLinkedList[T]) DeleteAtIndex(index int) error {
 		err := fmt.Errorf("index: %v out of range", index)
 		return err
 	}
+
 	if index == 0 {
 		next := sll.Head.Next
 		sll.Head = next
 		return nil
-
 	}
 
 	nodeByIndex, err := sll.FindByIndex(index - 1)
@@ -103,6 +103,18 @@ func (sll *SinglyLinkedList[T]) DeleteAtIndex(index int) error {
 	prev.Next = next
 	sll.Length--
 	return nil
+}
+
+func (sll *SinglyLinkedList[T]) Reverse() {
+	var prevNode *SinglyNode[T]
+	currentNode := sll.Head
+	for currentNode != nil {
+		nextNode := currentNode.Next
+		currentNode.Next = prevNode
+		prevNode = currentNode
+		currentNode = nextNode
+	}
+	sll.Head = prevNode
 }
 
 func (sll *SinglyLinkedList[T]) PrintList() {

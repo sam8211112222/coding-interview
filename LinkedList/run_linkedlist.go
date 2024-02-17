@@ -1,7 +1,8 @@
 package LinkedList
 
 func RunLinkedList() {
-	DllRun()
+	//DllRun()
+	SllRevserse()
 }
 
 func SllRun() {
@@ -34,4 +35,13 @@ func DllRun() {
 	dll.PrintList()
 	dll.InsertAtIndex(0, 12345)
 	dll.PrintList()
+}
+
+func SllRevserse() {
+	sll := NewSinglyLinkedList[int]()
+	sll.Append(1)
+	sll.Append(2)
+	sll.Append(3)
+	sll.Reverse()
+	sll.PrintList()
 }
