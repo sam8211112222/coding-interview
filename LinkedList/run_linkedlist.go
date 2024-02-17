@@ -29,5 +29,4 @@ func DllRun() {
 	dll.PrintList()
 	dll.Prepend(0)
 	dll.PrintList()
-
 }

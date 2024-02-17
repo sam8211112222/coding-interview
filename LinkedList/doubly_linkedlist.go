@@ -63,6 +63,37 @@ func (dll *DoublyLinkedList[T]) Prepend(value T) {
 	//dll.Length++
 }
 
+func (dll *DoublyLinkedList[T]) FindByIndex(index int) (*DoublyLinkedListNode[T], error) {
+	err := fmt.Errorf("index: %v out of range", index)
+	if index < 0 || index > dll.Length-1 {
+
+		return nil, err
+	}
+	var currentIndex int
+	// 如果index比一半的length大, 從後往前找比較快
+	if index > dll.Length/2 {
+		currentIndex = dll.Length - 1
+		currentNode := dll.Tail
+		for currentNode != nil {
+			if currentIndex == index {
+				return currentNode, nil
+			}
+			currentNode = currentNode.Prev
+			currentIndex--
+		}
+	} else {
+		currentNode := dll.Head
+		for currentNode != nil {
+			if currentIndex == index {
+				return currentNode, nil
+			}
+			currentNode = currentNode.Next
+			currentIndex++
+		}
+	}
+	return nil, err
+}
+
 func (dll *DoublyLinkedList[T]) PrintList() {
 	var sb strings.Builder
 	sb.WriteString("[")
