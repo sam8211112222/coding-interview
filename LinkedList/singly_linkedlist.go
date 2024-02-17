@@ -105,7 +105,7 @@ func (sll *SinglyLinkedList[T]) DeleteAtIndex(index int) error {
 	return nil
 }
 
-func (sll *SinglyLinkedList[T]) Print() {
+func (sll *SinglyLinkedList[T]) PrintList() {
 	var sb strings.Builder
 	sb.WriteString("[")
 
