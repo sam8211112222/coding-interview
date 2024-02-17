@@ -152,6 +152,24 @@ func (dll *DoublyLinkedList[T]) InsertAtIndex(index int, value T) error {
 	return nil
 }
 
+func (dll *DoublyLinkedList[T]) Reverse() {
+	var prevNode *DoublyLinkedListNode[T]
+	currentNode := dll.Head
+	dll.Tail = currentNode
+	for currentNode != nil {
+		prevNode = currentNode.Prev
+		nextNode := currentNode.Next
+		currentNode.Prev = nextNode
+		currentNode.Next = prevNode
+		if nextNode == nil {
+			dll.Head = currentNode
+			return
+		} else {
+			currentNode = nextNode
+		}
+	}
+}
+
 func (dll *DoublyLinkedList[T]) PrintList() {
 	var sb strings.Builder
 	sb.WriteString("[")

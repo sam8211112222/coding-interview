@@ -2,7 +2,8 @@ package LinkedList
 
 func RunLinkedList() {
 	//DllRun()
-	SllRevserse()
+	//SllRevserse()
+	DllReverse()
 }
 
 func SllRun() {
@@ -44,4 +45,16 @@ func SllRevserse() {
 	sll.Append(3)
 	sll.Reverse()
 	sll.PrintList()
+}
+
+func DllReverse() {
+	dll := NewDoublyLinkedList[int]()
+	dll.Append(1)
+	dll.Append(2)
+	dll.Append(3)
+
+	dll.PrintList()
+	dll.Reverse()
+	dll.PrintList()
+
 }
