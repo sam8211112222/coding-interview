@@ -1,10 +1,11 @@
 package main
 
 import (
-	"coding-interview/LinkedList"
+	"coding-interview/Tree"
 )
 
 func main() {
-	LinkedList.RunLinkedList()
+	//LinkedList.RunLinkedList()
 	//HashTable.RunHashTable()
+	Tree.RunTree()
 }
