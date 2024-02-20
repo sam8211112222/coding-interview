@@ -14,7 +14,12 @@ func RunBST() {
 	binarySearchTree.Insert(20)
 	binarySearchTree.Insert(5)
 	binarySearchTree.Insert(3)
-	binarySearchTree.Search(20)
-	binarySearchTree.Search(3)
+	binarySearchTree.Insert(2)
+	binarySearchTree.Insert(7)
+	binarySearchTree.Insert(6)
+	binarySearchTree.Insert(12)
+	binarySearchTree.Insert(16)
+	binarySearchTree.Insert(18)
+	binarySearchTree.Delete(5)
 
 }
