@@ -110,7 +110,8 @@ func (bst *BinarySearchTree[T]) Delete(value T) error {
 }
 
 func (bst *BinarySearchTree[T]) deleteNode(nodeToDelete, parent *Node[T]) {
-	// 情况1：无子节点
+	// 情况1：無子節點
+	//只需要考慮原本指向此節點的父點parent，將其 left child/right child 指向NULL即可。
 	if nodeToDelete.Left == nil && nodeToDelete.Right == nil {
 		if parent == nil { // 要删除的是根节点
 			bst.Root = nil
@@ -119,7 +120,11 @@ func (bst *BinarySearchTree[T]) deleteNode(nodeToDelete, parent *Node[T]) {
 		} else {
 			parent.Right = nil
 		}
-	} else if nodeToDelete.Left == nil || nodeToDelete.Right == nil { // 情况2：只有一个子节点
+		//情況 2：只有一個子節點
+		//如果nodeToDelete只有一個子節點，那麽在刪除nodeToDelete後，需要將其唯一的子節點連接到nodeToDelete的父節點上，以保持樹的連續性。
+		//根據nodeToDelete是其父節點的左子節點還是右子節點，相應地更新parent.Left或parent.Right。
+		//如果nodeToDelete是根節點（即parent為nil），則將BST的根節點更新為nodeToDelete的子節點。
+	} else if nodeToDelete.Left == nil || nodeToDelete.Right == nil {
 		var child *Node[T]
 		if nodeToDelete.Left != nil {
 			child = nodeToDelete.Left
