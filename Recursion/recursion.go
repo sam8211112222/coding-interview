@@ -31,3 +31,11 @@ func FibonacciOptimize(n int) int {
 	}
 	return b
 }
+
+func ReverseStringRecursive(str string) string {
+	if len(str) == 1 {
+		return str
+	}
+	// Hello, str[:1]就是H
+	return ReverseStringRecursive(str[1:]) + str[:1]
+}
