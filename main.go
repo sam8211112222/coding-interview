@@ -18,6 +18,9 @@ func main() {
 	//fmt.Println(Recursion.Fibonacci(5))
 	//fmt.Println(Recursion.Fibonacci(6))
 	//fmt.Println(Recursion.ReverseStringRecursive("Hello"))
-	fmt.Println(Algorithms.BubbleSort([]int{4, 2, 3, 1, 5}))
-	fmt.Println(Algorithms.SelectionSort([]int{4, 2, 3, 1, 5}))
+	//fmt.Println(Algorithms.BubbleSort([]int{4, 2, 3, 1, 5}))
+	//fmt.Println(Algorithms.SelectionSort([]int{4, 2, 3, 1, 5}))
+	//fmt.Println(Algorithms.InsertionSort([]int{4, 2, 3, 1, 5}))
+	fmt.Println(Algorithms.MergeSort([]int{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0}))
+
 }
