@@ -1,7 +1,7 @@
 package main
 
 import (
-	"coding-interview/Recursion"
+	"coding-interview/Algorithms"
 	"fmt"
 )
 
@@ -17,6 +17,6 @@ func main() {
 	//fmt.Println(Recursion.Fibonacci(4))
 	//fmt.Println(Recursion.Fibonacci(5))
 	//fmt.Println(Recursion.Fibonacci(6))
-	fmt.Println(Recursion.ReverseStringRecursive("Hello"))
-
+	//fmt.Println(Recursion.ReverseStringRecursive("Hello"))
+	fmt.Println(Algorithms.BubbleSort([]int{4, 2, 3, 1, 5}))
 }
