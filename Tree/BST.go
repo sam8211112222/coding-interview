@@ -2,6 +2,7 @@ package Tree
 
 import (
 	"errors"
+	"fmt"
 )
 
 // NumberType 要自己宣告泛型裡面的type, 不然如果用any, comparable 都沒辦法編譯
@@ -157,3 +158,99 @@ func (bst *BinarySearchTree[T]) findMin(node, parent *Node[T]) (*Node[T], *Node[
 	}
 	return current, parent
 }
+
+func (bst *BinarySearchTree[T]) BreadthFirstSearch() {
+	var list []*Node[T]
+	var queue []*Node[T]
+	queue = append(queue, bst.Root)
+	for len(queue) > 0 {
+		currentNode := queue[0]
+		queue = queue[1:]
+		list = append(list, currentNode)
+		if currentNode.Left != nil {
+			queue = append(queue, currentNode.Left)
+		}
+		if currentNode.Right != nil {
+			queue = append(queue, currentNode.Right)
+		}
+	}
+	for _, node := range list {
+		fmt.Println(*node.Value)
+	}
+}
+
+func (bst *BinarySearchTree[T]) DFSInOrder() {
+	list := []*Node[T]{}
+	list = traverseInOrder(bst.Root, list) // 接收返回的list
+	for _, v := range list {
+		fmt.Print(*v.Value, " ")
+	}
+	fmt.Println() // 输出换行，美化打印结果
+}
+
+func (bst *BinarySearchTree[T]) DFSPreOrder() {
+	list := []*Node[T]{}
+	list = traversePreOrder(bst.Root, list) // 接收返回的list
+	for _, v := range list {
+		fmt.Print(*v.Value, " ")
+	}
+	fmt.Println() // 输出换行，美化打印结果
+
+}
+
+func (bst *BinarySearchTree[T]) DFSPostOrder() {
+	list := []*Node[T]{}
+	list = traversePostOrder(bst.Root, list) // 接收返回的list
+	for _, v := range list {
+		fmt.Print(*v.Value, " ")
+	}
+	fmt.Println() // 输出换行，美化打印结果
+}
+
+func traverseInOrder[T NumberType](root *Node[T], list []*Node[T]) []*Node[T] {
+	if root != nil {
+		if root.Left != nil {
+			list = traverseInOrder(root.Left, list)
+		}
+		list = append(list, root)
+		if root.Right != nil {
+			list = traverseInOrder(root.Right, list)
+		}
+	}
+	return list
+}
+
+func traversePreOrder[T NumberType](root *Node[T], list []*Node[T]) []*Node[T] {
+	if root != nil {
+		list = append(list, root)
+		if root.Left != nil {
+			list = traversePreOrder(root.Left, list)
+		}
+		if root.Right != nil {
+			list = traversePreOrder(root.Right, list)
+		}
+	}
+	return list
+}
+func traversePostOrder[T NumberType](root *Node[T], list []*Node[T]) []*Node[T] {
+	if root != nil {
+		if root.Left != nil {
+			list = traversePostOrder(root.Left, list)
+		}
+		if root.Right != nil {
+			list = traversePostOrder(root.Right, list)
+		}
+		list = append(list, root)
+	}
+	return list
+}
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+//func isValidBST(root *TreeNode) bool {
+//
+//}

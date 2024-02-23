@@ -1,14 +1,11 @@
 package main
 
-import (
-	"coding-interview/Algorithms"
-	"fmt"
-)
+import "coding-interview/Tree"
 
 func main() {
 	//LinkedList.RunLinkedList()
 	//HashTable.RunHashTable()
-	//Tree.RunTree()
+	Tree.RunTree()
 	//fmt.Println(Recursion.Factorial(5))
 	//fmt.Println(Recursion.Fibonacci(0))
 	//fmt.Println(Recursion.Fibonacci(1))
@@ -21,6 +18,6 @@ func main() {
 	//fmt.Println(Algorithms.BubbleSort([]int{4, 2, 3, 1, 5}))
 	//fmt.Println(Algorithms.SelectionSort([]int{4, 2, 3, 1, 5}))
 	//fmt.Println(Algorithms.InsertionSort([]int{4, 2, 3, 1, 5}))
-	fmt.Println(Algorithms.MergeSort([]int{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0}))
+	//fmt.Println(Algorithms.MergeSort([]int{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0}))
 
 }
