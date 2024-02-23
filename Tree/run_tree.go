@@ -1,7 +1,5 @@
 package Tree
 
-import "fmt"
-
 func RunTree() {
 	//RunBST()
 	//RunBFS()
@@ -46,20 +44,5 @@ func RunBFS() {
 }
 
 func isValidBSTTest() {
-	// 构建一个较大的BST
-	root := &TreeNode{10,
-		&TreeNode{5,
-			&TreeNode{2, nil, nil},
-			&TreeNode{7, nil, nil}},
-		&TreeNode{15,
-			&TreeNode{12, nil, nil},
-			&TreeNode{20, nil, nil}}}
 
-	fmt.Println("Checking if the tree is a valid BST:", isValidBST(root)) // 应输出：true
-
-	// 修改树使其违反BST的条件
-	// 例如，将节点值15的左子节点改为值大于15的节点
-	root.Right.Left = &TreeNode{17, nil, nil}
-
-	fmt.Println("Checking if the modified tree is a valid BST:", isValidBST(root)) // 应输出：false
 }

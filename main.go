@@ -1,11 +1,9 @@
 package main
 
-import "coding-interview/Tree"
-
 func main() {
 	//LinkedList.RunLinkedList()
 	//HashTable.RunHashTable()
-	Tree.RunTree()
+	//Tree.RunTree()
 	//fmt.Println(Recursion.Factorial(5))
 	//fmt.Println(Recursion.Fibonacci(0))
 	//fmt.Println(Recursion.Fibonacci(1))
