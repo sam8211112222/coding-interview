@@ -1,6 +1,6 @@
 package Leetcode
 
-// You are given an array prices where prices[i] is the price of a given stock on the ith day.
+// buyAndSellStock1 You are given an array prices where prices[i] is the price of a given stock on the ith day.
 //
 // You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
 //
@@ -53,9 +53,6 @@ func buyAndSellStock1(prices []int) int {
 // 1 <= prices.length <= 3 * 104
 // 0 <= prices[i] <= 104
 func buyAndSellStock2(prices []int) int {
-	if len(prices) < 1 {
-		return 0
-	}
 
 	profit := 0
 	for i := 1; i < len(prices); i++ {
@@ -65,3 +62,14 @@ func buyAndSellStock2(prices []int) int {
 	}
 	return profit
 }
+
+//func buyAndSellStock3(prices []int) int {
+//
+//	profit := 0
+//	for i := 1; i < len(prices); i++ {
+//		if prices[i]-prices[i-1] > 0 {
+//			profit += prices[i] - prices[i-1]
+//		}
+//	}
+//	return profit
+//}
