@@ -92,3 +92,34 @@ func merge(input1, input2 []int) []int {
 
 	return newArray
 }
+
+func QuickSort(input []int) []int {
+	if len(input) < 2 {
+		return input
+	}
+
+	left, right := 0, len(input)-1
+
+	// Pick a pivot
+	pivotIndex := len(input) / 2
+
+	// Move the pivot to the right
+	input[pivotIndex], input[right] = input[right], input[pivotIndex]
+
+	// Pile elements smaller than the pivot on the left
+	for i := range input {
+		if input[i] < input[right] {
+			input[i], input[left] = input[left], input[i]
+			left++
+		}
+	}
+
+	// Place the pivot after the last smaller element
+	input[left], input[right] = input[right], input[left]
+
+	// Go down the rabbit hole
+	QuickSort(input[:left])
+	QuickSort(input[left+1:])
+
+	return input
+}
