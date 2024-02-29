@@ -1,6 +1,8 @@
 package Leetcode
 
-import "sort"
+import (
+	"sort"
+)
 
 // twoSum Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 //
@@ -52,4 +54,37 @@ func threeSum(input []int) [][]int {
 		}
 	}
 	return result
+}
+
+// maxSubArray 53. Maximum Subarray
+// Given an integer array nums, find the
+// subarray
+// with the largest sum, and return its sum.
+func maxSubArray(nums []int) int {
+	//currentSum := nums[0]
+	//
+	//for i, _ := range nums {
+	//	tempSum := 0
+	//	for j := i; j < len(nums); j++ {
+	//		tempSum += nums[j]
+	//		if tempSum > currentSum {
+	//			currentSum = tempSum
+	//		}
+	//	}
+	//}
+
+	maxSum, currentSum := nums[0], nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] < currentSum+nums[i] {
+			currentSum = currentSum + nums[i]
+		} else {
+			currentSum = nums[i]
+		}
+		if maxSum < currentSum {
+			maxSum = currentSum
+		}
+	}
+
+	return maxSum
 }
